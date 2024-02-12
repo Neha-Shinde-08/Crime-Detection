@@ -1,0 +1,30 @@
+.header{
+/* width: 1450px; */
+height: 89px;
+background: #555454;
+display: flex;
+align-items: center;
+justify-content:flex-end;
+padding-right: 150px;
+
+}
+.header_navlinkStlying{
+    text-decoration: none;
+    color: #ffffff;
+    margin: 5px 10px;
+    font-family:sans-serif;
+    font-style: normal;
+font-weight: 400;
+font-size: 25px;
+
+
+text-align: center;
+
+/* color: #1C0AEE; */
+
+
+}
+
+.header_navlinkStlying.activeNavLink{
+    color: violet; /* Color for active nav item */
+  }

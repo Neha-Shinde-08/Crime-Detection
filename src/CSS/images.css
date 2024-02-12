@@ -1,0 +1,64 @@
+.list_styling{
+    /* display: flex; */
+    list-style: none;
+    margin: 50px 50px;
+   
+}
+.list_formatting{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px;
+    height: 50vh;
+    overflow-y: scroll;
+    background-color: #f2f2f2;
+    margin-top: 0;
+}
+.good_images{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px;
+    height: 50vh;
+    overflow-y: scroll;
+    background-color: #7c5ad1;
+    margin-top: 0;
+}
+.bad_images{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 50px;
+    height: 50vh;
+    overflow-y: scroll;
+    background-color: #f2f2f2;
+    margin-top: 0;
+}
+.image_resize{
+    height: 300px;
+    width: 300px;
+}
+.image_styling{
+    background-color: #ffff;
+    padding: 10px;
+}
+.audit_buttons{
+    margin-top: 10px;
+}
+.audit_buttons > button{
+outline: none;
+border: none;
+border-radius: 5px;
+padding: 5px 10px;
+margin-right: 10px;
+cursor: pointer;
+height: 40px;
+width: 60px;
+font-weight:600;
+}
+.auditbtn1{
+    background-color: #44B342;
+}
+.auditbtn2{
+    background-color: #DC4141;
+}
+.auditbtn3{
+    background-color: rgba(244, 244, 7, 0.884);
+}

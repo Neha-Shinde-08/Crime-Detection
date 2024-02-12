@@ -1,0 +1,15 @@
+.DashboardSiderbar{
+    flex: 0.2;
+    background-color: #7D7878;
+    text-align: center;
+    padding-top: 50px;
+    height: 90vh;
+}
+.navlink_styling{
+    text-decoration: none;
+    color: #ffffff;
+   
+    background:none;
+}
+
+

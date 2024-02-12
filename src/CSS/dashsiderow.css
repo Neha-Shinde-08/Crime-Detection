@@ -1,0 +1,35 @@
+.DashSideRow{
+    display: flex;
+    align-items: center;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    margin-right: 10px;
+    margin-left: 15px;
+    padding: 0px 20px;
+    /* border-radius: 5px; */
+    background: #D9D9D9;
+    height: 67px;
+width: 231px;
+color: #111;
+box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+
+
+
+
+ 
+}
+.dashsiderow_icon{
+     height: 24px;
+    width: 24px;
+
+}
+.dashsiderow_title{
+    margin-left: 24px;
+    font-size: 1.2rem;
+   
+    font-weight: 500;
+}
+.DashSideRow:hover{
+    background-color: #f2f2f2;
+    color: #ff333c;
+}
