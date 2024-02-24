@@ -20,7 +20,7 @@ function App() {
     <BrowserRouter>
     <Header/>
       <Routes>
-       <Route path='/dashboard' element={<Dashboard/>} />
+       <Route path='/' element={<DashImages/>} />
         <Route path='/dashboard-images' element={<DashImages />} />
         <Route path='/dashboard-videos' element={<DashVideos />} />
         <Route path='/images' element={<Images />} />

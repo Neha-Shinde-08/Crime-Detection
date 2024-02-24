@@ -8,6 +8,7 @@
 .navlink_styling{
     text-decoration: none;
     color: #ffffff;
+    border-radius: 2.5vmin;
    
     background:none;
 }

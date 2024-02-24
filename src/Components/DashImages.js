@@ -59,7 +59,7 @@ const DashImages = () => {
   const offCount=()=>{
     setTotaloff(totalOff+1);
   }
-
+if(loading)return<h1>Loading...</h1>
   return (
     <div className='dashboard'>
       <DashboardSiderbar />
@@ -80,15 +80,15 @@ const DashImages = () => {
         </div>
 
         <div className='dashImages_mid'>
-          <div className='dashImages_stats' style={{backgroundColor:"#2D2773"}}>
+          <div className='dashImages_stats' style={{color:'black',borderRadius:'2.5vmin',backgroundColor:"#aaaaff"}}>
             <h3 className='stat_title'>Total Images Crawled</h3>
             <span className='totalno_styling'>{data.length}</span>
           </div>
-          <div className='dashImages_stats' style={{backgroundColor:"#44B342"}}>
+          <div className='dashImages_stats' style={{color:'black',borderRadius:'2.5vmin',backgroundColor:"#aaffaa"}}>
           <h3 className='stat_title'>Total Images Passed</h3>
             <span className='totalno_styling'>{totalPass}</span>
           </div>
-          <div className='dashImages_stats' style={{backgroundColor:"#DC4141"}}>
+          <div className='dashImages_stats' style={{color:'black',borderRadius:'2.5vmin',backgroundColor:"#ffaaaa"}}>
           <h3 className='stat_title'>Total Images Offed</h3>
             <span className='totalno_styling'>{totalOff}</span>
           </div>

@@ -1,5 +1,4 @@
 from flask import Flask, request, jsonify
-from pymongo import MongoClient
 from bs4 import BeautifulSoup
 import requests
 import json
@@ -26,8 +25,8 @@ def classify_images(images):
         params = {
             'url': image,
             'models': 'nudity-2.0, wad',
-           'api_user': '769181231',
-  'api_secret': 'NEV4dKpNW7Ty24ia8qUt'
+           'api_user': '1080320659',
+  'api_secret': '7JffbX7HUGbnDLBMsHM9Uo6bXo7acPsg'
 
 
         }
@@ -89,7 +88,7 @@ def classify():
 
 
 @app.route("/classifyvideo", methods=["POST"])
-def classify():
+def classifyvideo():
     videos = request.json.get("data")
     classified_videos = classify_videos(videos)
     return jsonify(classified_videos)
