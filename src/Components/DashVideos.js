@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import DashboardSiderbar from './DashboardSiderbar'
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchvideos } from '../Actions/ImageAction';
 
 const DashVideos = () => {
   const [url, setUrl] = useState("");
@@ -19,9 +20,10 @@ const DashVideos = () => {
   
   const handleSubmit = (e) => {
     e.preventDefault();
-    // dispatch(fetchData(url));
+    dispatch(fetchvideos(url));
     setTotalLinks(data.length);
   };
+  if(loading)return<h1>VideosLoading...</h1>
   return (
     <div className='dashboard'>
         <DashboardSiderbar />
@@ -42,15 +44,15 @@ const DashVideos = () => {
         </div>
 
         <div className='dashImages_mid'>
-          <div className='dashImages_stats' style={{backgroundColor:"#2D2773"}}>
+          <div className='dashImages_stats' style={{ color:'black',borderRadius:'2.5vmin',backgroundColor:"#aaaaff"}}>
             <h3 className='stat_title'>Total Videos Crawled</h3>
             <span className='totalno_styling'>{data.length}</span>
           </div>
-          <div className='dashImages_stats' style={{backgroundColor:"#44B342"}}>
+          <div className='dashImages_stats' style={{color:'black',borderRadius:'2.5vmin',backgroundColor:"#aaffaa"}}>
           <h3 className='stat_title'>Total Videos Passed</h3>
             <span className='totalno_styling'>{totalPass}</span>
           </div>
-          <div className='dashImages_stats' style={{backgroundColor:"#DC4141"}}>
+          <div className='dashImages_stats' style={{color:'black',borderRadius:'2.5vmin',backgroundColor:"#ffaaaa"}}>
           <h3 className='stat_title'>Total Videos Offed</h3>
             <span className='totalno_styling'>{totalOff}</span>
           </div>

@@ -20,6 +20,19 @@ export const fetchData = (url) => {
   };
 };
 
+export const fetchvideos = (url) => {
+  return async (dispatch) => {
+    dispatch({ type: FETCH_DATA_REQUEST });
+    try {
+      const response = await axios.post("/crawlvideos", { url });
+      dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data.videos});
+    } catch (error) {
+      dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
+    }
+  };
+};
+
+
 // export const classifyData=(data)=>{
 //   return async (dispatch) => {
 //     dispatch({ type: CLASSIFY_DATA_REQUEST });

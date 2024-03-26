@@ -12,12 +12,12 @@ const CrawlForm = () => {
     const response = await axios.post("/crawl", { url });
     setData(response.data.images);
   };
-
+  
   const handleClassify = async () => {
     const response = await axios.post("/classify", { data });
     setClassifiedData(response.data);
   };
-
+  if(classifiedData)return<h1>Classifying...</h1>
   return (
     <div className="crawlForm">
       <div className="form_top">
