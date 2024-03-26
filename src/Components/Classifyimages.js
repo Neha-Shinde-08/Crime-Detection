@@ -5,12 +5,16 @@ import axios from "axios";
 const CrawlForm = () => {
   const [url, setUrl] = useState("");
   const [data, setData] = useState([]);
+  const [videos, setVideos] = useState([]);
   const [classifiedData, setClassifiedData] = useState({ appropriate: [], inappropriate: [] });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const responsevideo = await axios.post("/crawlvideos", { url });
+    setVideos(responsevideo.data.videos);
     const response = await axios.post("/crawl", { url });
     setData(response.data.images);
+    
   };
   
   const handleClassify = async () => {
