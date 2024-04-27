@@ -38,9 +38,9 @@ def classify_images(images):
     for image in images:
         params = {
             "url": image,
-            "models": "nudity-2.0, wad",
-            "api_user": "91323222",
-            "api_secret": "DWfg8YvUpJXVFSijQmqozaHn8qN5UXwA",
+            "models": "wad",
+            "api_user": "1846878292",
+            "api_secret": "88ZwfJhaBgXNW2nUS8rt",
         }
         response = requests.get(
             "https://api.sightengine.com/1.0/check.json", params=params
@@ -77,7 +77,7 @@ def classify_images(images):
             alcohol = output["alcohol"]
             drugs = output["drugs"]
 
-            if weapon > 0.4 or alcohol > 0.4 or drugs > 0.4:
+            if weapon > 0.5 or alcohol > 0.5 or drugs > 0.5:
                 classified_images["inappropriate"].append(image)
             else:
                 classified_images["appropriate"].append(image)
@@ -88,7 +88,7 @@ def classify_images(images):
 
             tobacco = output["tobacoo"]["prob"]
 
-            if tobacco > 0.4:
+            if tobacco > 0.5:
                 classified_images["inappropriate"].append(image)
             else:
                 classified_images["appropriate"].append(image)
@@ -125,10 +125,10 @@ def classify_videos(videos):
             suggestive_classes = output["nudity"]["suggestive_classes"]
             none = output["nudity"]["none"]
             if (
-                sexual_activity > 0.4
-                or sexual_display > 0.4
-                or erotica > 0.4
-                or suggestive > 0.4
+                sexual_activity > 0.5
+                or sexual_display > 0.5
+                or erotica > 0.5
+                or suggestive > 0.5
             ):
                 classified_videos["inappropriate"].append(video)
 
@@ -143,7 +143,7 @@ def classify_videos(videos):
             alcohol = output["alcohol"]
             drugs = output["drugs"]
 
-            if weapon > 0.4 or alcohol > 0.4 or drugs > 0.4:
+            if weapon > 0.5 or alcohol > 0.5 or drugs > 0.5:
                 classified_videos["inappropriate"].append(video)
             else:
                 classified_videos["appropriate"].append(video)
@@ -154,7 +154,7 @@ def classify_videos(videos):
 
             tobacco = output["tobacoo"]["prob"]
 
-            if tobacco > 0.4:
+            if tobacco > 0.5:
                 classified_videos["inappropriate"].append(video)
             else:
                 classified_videos["appropriate"].append(video)
