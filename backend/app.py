@@ -2,6 +2,8 @@ from flask import Flask, request, jsonify
 from bs4 import BeautifulSoup
 import requests
 import json
+from crawl_article import crawl_wikipedia
+from articlemoderation import moderate_content
 
 app = Flask(__name__)
 
@@ -178,6 +180,13 @@ def classifyvideo():
     classified_videos = classify_videos(videos)
     return jsonify(classified_videos)
 
+@app.route("/classifyarticle", methods=["POST"])
+def classifyarticle():
+    articles = request.json.get("data")
+    classified_articles = crawl_wikipedia(articles)
+    result=moderate_content( classified_articles)
+    return jsonify(result)
 
 if __name__ == "__main__":
     app.run()
+
