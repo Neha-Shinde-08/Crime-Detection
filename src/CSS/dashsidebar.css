@@ -2,8 +2,8 @@
     flex: 0.2;
     background-color: #7D7878;
     text-align: center;
-    padding-top: 50px;
-    height: 90vh;
+    padding-top: 5vmin;
+    height: 100vh;
 }
 .navlink_styling{
     text-decoration: none;

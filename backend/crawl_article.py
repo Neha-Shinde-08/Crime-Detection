@@ -34,10 +34,3 @@ def crawl_wikipedia(category):
         print('Failed to retrieve data from Wikipedia.')
         return None
 
-# Example usage
-category = "Python (programming language)"
-articles = crawl_wikipedia(category)
-
-# Print the first few articles
-for i, article in enumerate(articles[:5]):
-    print(f"Article {i+1}:\n{article}\n")
