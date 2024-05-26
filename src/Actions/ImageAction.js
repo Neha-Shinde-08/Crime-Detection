@@ -13,7 +13,7 @@ export const fetchData = (url) => {
     dispatch({ type: FETCH_DATA_REQUEST });
     try {
       const response = await axios.post("/crawl", { url });
-      dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data.images});
+      dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data.images });
     } catch (error) {
       dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
     }
@@ -25,13 +25,25 @@ export const fetchvideos = (url) => {
     dispatch({ type: FETCH_DATA_REQUEST });
     try {
       const response = await axios.post("/crawlvideos", { url });
-      dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data.videos});
+      dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data.videos });
     } catch (error) {
       dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
     }
   };
 };
 
+export const fetcharticles = (url) => {
+  return async (dispatch) => {
+    dispatch({ type: FETCH_DATA_REQUEST });
+    try {
+      const response = await axios.post("/crawlarticle", { url });
+      console.log(response.data);
+      dispatch({ type: FETCH_DATA_SUCCESS, payload: response.data.articles });
+    } catch (error) {
+      dispatch({ type: FETCH_DATA_FAILURE, payload: error.message });
+    }
+  };
+};
 
 // export const classifyData=(data)=>{
 //   return async (dispatch) => {

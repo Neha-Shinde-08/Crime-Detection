@@ -15,10 +15,26 @@ def crawl():
     soup = BeautifulSoup(page.content, "html.parser")
  
     images = soup.find_all("img")
-    data = [image.get("src") for image in images]
+    data = [image.get('src') for image in images]
     # return jsonify(data)
     classified_images = classify_images(data)
     return jsonify({"images": data, "classified_images": classified_images})
+
+
+@app.route("/crawlarticle", methods=["POST"])
+def crawlarticles():
+    url = request.json.get("url")
+    print(url)
+    # page = requests.get(url)
+    # soup = BeautifulSoup(page.content, "html.parser")
+ 
+    # images = soup.find_all("img")
+    # data = [image.get('src') for image in images]
+    # # return jsonify(data)
+    classified_articles=crawl_wikipedia(url)
+    print(classified_articles)
+
+    return jsonify({"article": url, "classified_articles": classified_articles})
 
 
 @app.route("/crawlvideos", methods=["POST"])
@@ -39,58 +55,36 @@ def classify_images(images):
     classified_images = {"appropriate": [], "inappropriate": []}
     for image in images:
         params = {
-            "url": image,
-            "models": "wad",
-            "api_user": "1846878292",
-            "api_secret": "88ZwfJhaBgXNW2nUS8rt",
+            'url': image,
+            'models': 'wad',
+           'api_user': "1846878292",
+  'api_secret': "88ZwfJhaBgXNW2nUS8rt",
         }
-        response = requests.get(
-            "https://api.sightengine.com/1.0/check.json", params=params
-        )
+        response = requests.get('https://api.sightengine.com/1.0/check.json', params=params)
         output = json.loads(response.text)
         print(output)
-        flag = ""
-        if "nudity" in output and "none" in output["nudity"]:
-
-            flag = flag + "nudity"
-
-            sexual_activity = output["nudity"]["sexual_activity"]
-            sexual_display = output["nudity"]["sexual_display"]
-            erotica = output["nudity"]["erotica"]
-            suggestive = output["nudity"]["suggestive"]
-            suggestive_classes = output["nudity"]["suggestive_classes"]
-            none = output["nudity"]["none"]
-            if (
-                sexual_activity > 0.5
-                or sexual_display > 0.5
-                or erotica > 0.5
-                or suggestive > 0.5
-            ):
-                classified_images["inappropriate"].append(image)
-
-            else:
-                classified_images["appropriate"].append(image)
+        flag=""
 
         if "weapon" in output and "none" in output["nudity"]:
 
-            flag = flag + "weapon"
+            flag=flag+"weapon"
 
-            weapon = output["weapon"]
-            alcohol = output["alcohol"]
-            drugs = output["drugs"]
+            weapon=output['weapon']
+            alcohol= output["alcohol"]
+            drugs=output["drugs"]
 
-            if weapon > 0.5 or alcohol > 0.5 or drugs > 0.5:
+            if weapon >0.4 or alcohol>0.4 or drugs>0.4 :
                 classified_images["inappropriate"].append(image)
             else:
                 classified_images["appropriate"].append(image)
 
         if "tobacoo" in output and "none" in output["nudity"]:
 
-            flag = flag + "tobacco"
+            flag=flag+"tobacco"
 
-            tobacco = output["tobacoo"]["prob"]
+            tobacco=output['tobacoo']['prob']
 
-            if tobacco > 0.5:
+            if tobacco >0.4:
                 classified_images["inappropriate"].append(image)
             else:
                 classified_images["appropriate"].append(image)
@@ -99,71 +93,46 @@ def classify_images(images):
 
             classified_images["appropriate"].append(image)
     return classified_images
-
-
 def classify_videos(videos):
     classified_videos = {"appropriate": [], "inappropriate": []}
-    for video in videos:
+    for image in videos:
         params = {
-            "url": video,
-            "models": "nudity-2.0, wad",
-            "api_user": "1080320659",
-            "api_secret": "7JffbX7HUGbnDLBMsHM9Uo6bXo7acPsg",
+            'url': image,
+            'models': 'wad',
+           'api_user': '1080320659',
+  'api_secret': "88ZwfJhaBgXNW2nUS8rt",
         }
-        response = requests.get(
-            "https://api.sightengine.com/1.0/check.json", params=params
-        )
+        response = requests.get('https://api.sightengine.com/1.0/check.json', params=params)
         output = json.loads(response.text)
         print(output)
-        flag = ""
-        if "nudity" in output and "none" in output["nudity"]:
-
-            flag = flag + "nudity"
-
-            sexual_activity = output["nudity"]["sexual_activity"]
-            sexual_display = output["nudity"]["sexual_display"]
-            erotica = output["nudity"]["erotica"]
-            suggestive = output["nudity"]["suggestive"]
-            suggestive_classes = output["nudity"]["suggestive_classes"]
-            none = output["nudity"]["none"]
-            if (
-                sexual_activity > 0.5
-                or sexual_display > 0.5
-                or erotica > 0.5
-                or suggestive > 0.5
-            ):
-                classified_videos["inappropriate"].append(video)
-
-            else:
-                classified_videos["appropriate"].append(video)
-
+        flag=""
         if "weapon" in output and "none" in output["nudity"]:
 
-            flag = flag + "weapon"
+            flag=flag+"weapon"
 
-            weapon = output["weapon"]
-            alcohol = output["alcohol"]
-            drugs = output["drugs"]
+            weapon=output['weapon']
+            alcohol= output["alcohol"]
+            drugs=output["drugs"]
 
-            if weapon > 0.5 or alcohol > 0.5 or drugs > 0.5:
-                classified_videos["inappropriate"].append(video)
+            if weapon >0.4 or alcohol>0.4 or drugs>0.4 :
+                classified_videos["inappropriate"].append(image)
             else:
-                classified_videos["appropriate"].append(video)
+                classified_videos["appropriate"].append(image)
 
         if "tobacoo" in output and "none" in output["nudity"]:
 
-            flag = flag + "tobacco"
+            flag=flag+"tobacco"
 
-            tobacco = output["tobacoo"]["prob"]
+            tobacco=output['tobacoo']['prob']
 
-            if tobacco > 0.5:
-                classified_videos["inappropriate"].append(video)
+            if tobacco >0.4:
+                classified_videos["inappropriate"].append(image)
             else:
-                classified_videos["appropriate"].append(video)
+                classified_videos["appropriate"].append(image)
 
         else:
 
-            classified_videos["appropriate"].append(video)
+            classified_videos["appropriate"].append(image)
     return classified_videos
 
 
@@ -183,8 +152,10 @@ def classifyvideo():
 @app.route("/classifyarticle", methods=["POST"])
 def classifyarticle():
     articles = request.json.get("data")
+    print(articles)
     classified_articles = crawl_wikipedia(articles)
-    result=moderate_content( classified_articles)
+    print(classified_articles)
+    result=moderate_content(classified_articles)
     return jsonify(result)
 
 if __name__ == "__main__":
